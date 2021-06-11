@@ -59,6 +59,8 @@ jobs: # Job to execute on event
         
     - if: ${{success()}}
       name: Create Upload Direcotry
+      env:
+        message: "GoCICDDemo Test Success"
       run: mkdir upload
       
     - name: Prepare Documents
@@ -74,17 +76,11 @@ jobs: # Job to execute on event
       uses: actions/download-artifact@v2
       with:
         name: assetDocuments
-
-    - name: whatsapp-notify
-      env:
-        account_sid: ${{ secrets.account_sid }}
-        auth_token: ${{ secrets.auth_token }}
-        to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
-        message: "GoCICDDemo Test Success"
-      uses: khaled-ibtikar/whatsapp-push-notify-action@master
       
     - if: ${{failure()}}
       name: Create Issues Notifications
+      env:
+         message: "GoCICDDemo Test Success"
       uses: nashmaniac/create-issue-action@v1.1
       with:
         title: Build Failed
@@ -93,12 +89,11 @@ jobs: # Job to execute on event
         labels: worflow-failed
         body: Workflow failed for commit ${{github.sha}}
         
-    - if: ${{failure()}}
-      name: whatsapp-notify
+
+    - name: whatsapp-notify
       env:
         account_sid: ${{ secrets.account_sid }}
         auth_token: ${{ secrets.auth_token }}
         to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
-        message: "GoCICDDemo Test Fail"
       uses: khaled-ibtikar/whatsapp-push-notify-action@master
       
