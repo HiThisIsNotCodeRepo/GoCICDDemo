@@ -100,5 +100,5 @@ jobs: # Job to execute on event
         account_sid: ${{ secrets.account_sid }}
         auth_token: ${{ secrets.auth_token }}
         to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
-        message: "GoCICDDemo Test Success"
+        message: "GoCICDDemo Test Fail"
       uses: khaled-ibtikar/whatsapp-push-notify-action@master
