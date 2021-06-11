@@ -36,15 +36,16 @@ jobs: # Job to execute on event
         path: virtualRepoFolder #Folder to save to in my virtual env
         token: ${{secrets.GO_SECRET}} #Pwd to enter remote hidden repo  
         
-    - name: whatsapp-notify
+    - name: set-up whatsapp
       id: whatsapp-notify
       env:
         account_sid: ${{ secrets.account_sid }}
         auth_token: ${{ secrets.auth_token }}
         to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
-      uses: ishween/whatsapp-push-notify-action@master
+
       
-    - name : Run
+    - name : send a whatsapp msg
+      uses: ishween/whatsapp-push-notify-action@master
       run: |
         echo 'Start!'
         
