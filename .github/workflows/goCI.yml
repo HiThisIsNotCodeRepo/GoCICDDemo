@@ -50,3 +50,8 @@ jobs: # Job to execute on event
         go test -v | go2xunit > report.xml
         ls
         
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: report.xml
