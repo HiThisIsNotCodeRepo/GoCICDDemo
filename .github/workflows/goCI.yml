@@ -27,4 +27,17 @@ jobs: # Job to execute on event
     - name: Check files system # check virtual env has files
       run: |
         ls
-        cat calc.go
+        cat calc.go #prints the content of calc.go
+        
+    - name: Checkout private repo remotely
+      uses: actions/checkout@v2
+      with:
+        repository: lowkh2/GoSchoolRemoteExample # hidden repo i am trying to access
+        path: virtualRepoFolder #Folder to save to in my virtual env
+        token: ${{secrets.GO_SECRET}} #Pwd to enter remote hidden repo  
+    - name: Show hidden files
+      run: |
+        cd virtualRepoFolder
+        ls 
+        cat myText.txt
+        cd ..
