@@ -38,6 +38,6 @@ jobs: # Job to execute on event
     - name: Show hidden files
       run: |
         cd virtualRepoFolder
-        ll 
+        ls -l 
         cat myText.txt
         cd ..
